@@ -519,9 +519,6 @@
       display: block;
     }
     .gift-body {
-      display: flex;
-      align-items: flex-start;
-      gap: 1.25rem;
       padding: 1.6rem 1.75rem;
     }
     .gift-icon-wrap {
@@ -531,11 +528,11 @@
       padding-top: 0.2rem;
     }
     .gift-body h3 {
-      font-size: 1.55rem;
-      font-weight: 400;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 300;
       font-style: italic;
-      margin-bottom: 0.45rem;
       color: var(--dark);
+      line-height: 1.3;
     }
     .gift-body p {
       font-size: 0.95rem;
@@ -792,45 +789,24 @@
 
       <div class="gift-list">
 
-        <!-- GIFT 1: Apple Cash -->
-        <!-- IMAGE: save the Apple Cash thumbnail as photos/gift-cash.jpg -->
         <div class="gift-card fade-up">
-          <img src="photos/gift-cash.jpg" alt="Apple Cash" class="gift-thumb" />
+          <img src="photos/gift-cash.jpg" alt="Cash" class="gift-thumb" />
           <div class="gift-body">
-            <div class="gift-icon-wrap">💛</div>
-            <div>
-              <h3>$2,000 — Apple Cash</h3>
-              <p>No strings, no receipts, no rules. Sent straight to your phone. Spend it on something you've been eyeing, save it, splurge on yourself — entirely your call. You've earned it just by being you.</p>
-              <span class="gift-badge">Sent via Apple Cash</span>
-            </div>
+            <h3>$2,000 Cash — for your Joy</h3>
           </div>
         </div>
 
-        <!-- GIFT 2: Pilates -->
-        <!-- IMAGE: save the Club Pilates studio photo as photos/gift-pilates.jpg -->
         <div class="gift-card fade-up delay-1">
-          <img src="photos/gift-pilates.jpg" alt="Club Pilates Thao Dien" class="gift-thumb" />
+          <img src="photos/gift-pilates.jpg" alt="X Pilates Thao Dien" class="gift-thumb" />
           <div class="gift-body">
-            <div class="gift-icon-wrap">🩰</div>
-            <div>
-              <h3>8 Classes — Club Pilates Thao Dien</h3>
-              <p>8 sessions at Club Pilates Thao Dien, 1:5 ratio — small group, real instruction, the good reformers. Book them whenever you want, no pressure, no expiry. Just show up and feel incredible.</p>
-              <span class="gift-badge">Club Pilates Thao Dien &nbsp;·&nbsp; 8 × 1:5 classes</span>
-            </div>
+            <h3>8 Classes at X Pilates Thao Dien — for your Booty</h3>
           </div>
         </div>
 
-        <!-- GIFT 3: Dinner -->
-        <!-- IMAGE: save the Quince Saigon dish photo as photos/gift-dinner.jpg -->
         <div class="gift-card fade-up delay-2">
-          <img src="photos/gift-dinner.jpg" alt="Quince Saigon" class="gift-thumb" style="object-position: center center;" />
+          <img src="photos/gift-dinner.jpg" alt="Dinner" class="gift-thumb" style="object-position: center center;" />
           <div class="gift-body">
-            <div class="gift-icon-wrap">🕯️</div>
-            <div>
-              <h3>Dinner — Quince Saigon</h3>
-              <p>A proper night out. Just the two of us at Quince — one of the best tables in the city. You pick the date, I'll handle the reservation and everything else. You just show up looking the way you do.</p>
-              <span class="gift-badge">Quince Saigon &nbsp;·&nbsp; Date TBD</span>
-            </div>
+            <h3>1 Foine Dining Dinner — For your Tummy</h3>
           </div>
         </div>
 
