@@ -91,23 +91,16 @@
       text-align: center;
       overflow: hidden;
 
-      /* PHOTO: hero background
-         To use your own photo, replace the gradient below with:
-           background-image: url('photos/hero.jpg');
-           background-size: cover;
-           background-position: center top;
-         Then add a dark overlay by uncommenting .hero-img-overlay below. */
-      background: linear-gradient(160deg, #1C1410 0%, #3D2214 25%, #6B3A22 55%, #C4956A 80%, #E8D5C4 100%);
+      background-image: url('photos/hero.PNG');
+      background-size: cover;
+      background-position: center top;
     }
 
-    /* Uncomment if using a real photo: */
-    /*
     .hero-img-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.5) 100%);
+      background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 100%);
       z-index: 1;
     }
-    */
 
     .hero-content {
       position: relative;
@@ -229,14 +222,9 @@
     }
 
     /* Placeholder gradients — each reason gets its own warm palette */
-    /* PHOTO: reason-sexy  → replace the gradient with: background-image: url('photos/reason-sexy.jpg'); */
-    .reason-bg.sexy    { background: linear-gradient(145deg, #2C1A14 0%, #7A3D28 40%, #C4956A 80%, #E8D5C4 100%); }
-    /* PHOTO: reason-smart → replace with: background-image: url('photos/reason-smart.jpg'); */
-    .reason-bg.smart   { background: linear-gradient(145deg, #1A2C1F 0%, #3D5C45 45%, #8BA882 80%, #C4D4B0 100%); }
-    /* PHOTO: reason-funny → replace with: background-image: url('photos/reason-funny.jpg'); */
-    .reason-bg.funny   { background: linear-gradient(145deg, #2C1A0A 0%, #7A5228 45%, #C49A5A 80%, #E8D5A4 100%); }
-    /* PHOTO: reason-talented → replace with: background-image: url('photos/reason-talented.jpg'); */
-    .reason-bg.talented { background: linear-gradient(145deg, #0A1A2C 0%, #284052 45%, #5A8098 80%, #A4C4D4 100%); }
+    .reason-bg.sexy      { background-image: url('photos/sexyBeach.jpg'); }
+    .reason-bg.smart     { background-image: url('photos/smartJapan2.jpeg'); }
+    .reason-bg.talented  { background-image: url('photos/talentedStaining.jpeg'); }
 
     .reason-overlay {
       position: absolute;
@@ -284,6 +272,16 @@
       line-height: 1.75;
     }
 
+    /* ─── VIDEO BACKGROUND (Hilarious section) ─── */
+    .reason-bg-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
     /* ─── PAYWALL TRIGGER BUTTON ─── */
     .paywall-trigger {
       display: inline-flex;
@@ -322,6 +320,16 @@
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.35s ease;
+      background-image: url('photos/sexyVIPloader.jpeg');
+      background-size: cover;
+      background-position: center top;
+    }
+    .paywall-modal::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 5, 2, 0.6);
+      z-index: 0;
     }
     .paywall-modal.open {
       opacity: 1;
@@ -330,10 +338,9 @@
     .paywall-modal-backdrop {
       position: absolute;
       inset: 0;
-      background: rgba(14, 8, 4, 0.82);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
       cursor: pointer;
+      z-index: 1;
+      background: transparent;
     }
     .paywall-modal-box {
       position: relative;
@@ -725,7 +732,7 @@
          background-position: center top;
        Then uncomment .hero-img-overlay below. -->
   <header class="hero">
-    <!-- <div class="hero-img-overlay"></div> -->
+    <div class="hero-img-overlay"></div>
     <div class="hero-content">
       <div class="hero-eyebrow">May 18, 2026 &nbsp;·&nbsp; A day worth celebrating</div>
       <h1 class="hero-title">
@@ -810,10 +817,11 @@
     </div>
   </section>
 
-  <!-- ━━━━━━━━━━━━━━━━━━━━ REASON 3: FUNNY ━━━━━━━━━━━━━━━━━━━━ -->
-  <!-- PHOTO: <div class="reason-bg funny" style="background-image: url('photos/reason-funny.jpg');"></div> -->
+  <!-- ━━━━━━━━━━━━━━━━━━━━ REASON 3: HILARIOUS (video background) ━━━━━━━━━━━━━━━━━━━━ -->
   <section class="reason-section">
-    <div class="reason-bg funny"></div>
+    <video class="reason-bg-video" autoplay muted loop playsinline>
+      <source src="photos/hilariousDancing.mp4" type="video/mp4">
+    </video>
     <div class="reason-overlay"></div>
     <div class="reason-content fade-up">
       <div class="reason-number">03 &nbsp;·&nbsp; Why I Love You</div>
