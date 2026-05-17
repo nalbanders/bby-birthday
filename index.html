@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday, Bby 🤍</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,500;1,600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       HOW TO ADD YOUR PHOTOS
+       ─────────────────────────────────────────────────────────────
+       1. Create a folder called "photos" next to this index.html
+       2. Add your images there (jpg or webp work great)
+       3. Search this file for "PHOTO:" comments — each one tells
+          you exactly which image goes where and how to swap it in.
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:      #FDF8F2;
+      --blush:      #EDD9CE;
+      --gold:       #C4956A;
+      --gold-light: #E8C9A0;
+      --dark:       #1C1410;
+      --warm:       #8B7355;
+      --rose:       #C97B62;
+      --deep:       #2C1F17;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--dark);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      padding: 1.4rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: transparent;
+      transition: background 0.4s, backdrop-filter 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(28, 20, 16, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .nav-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(253,248,242,0.85);
+      font-weight: 300;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2.25rem;
+    }
+    .nav-links a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(253,248,242,0.75);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold-light); }
+
+    /* ─── HERO ─── */
+    .hero {
+      height: 100vh;
+      min-height: 620px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      overflow: hidden;
+
+      /* PHOTO: hero background
+         To use your own photo, replace the gradient below with:
+           background-image: url('photos/hero.jpg');
+           background-size: cover;
+           background-position: center top;
+         Then add a dark overlay by uncommenting .hero-img-overlay below. */
+      background: linear-gradient(160deg, #1C1410 0%, #3D2214 25%, #6B3A22 55%, #C4956A 80%, #E8D5C4 100%);
+    }
+
+    /* Uncomment if using a real photo: */
+    /*
+    .hero-img-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.5) 100%);
+      z-index: 1;
+    }
+    */
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 2rem 1.5rem;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 1.75rem;
+      opacity: 0.9;
+    }
+
+    .hero-title {
+      font-size: clamp(3.2rem, 11vw, 9rem);
+      font-weight: 300;
+      line-height: 0.88;
+      color: var(--cream);
+      letter-spacing: -0.015em;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-light);
+      display: block;
+    }
+
+    .hero-sub {
+      margin-top: 2.25rem;
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
+      font-style: italic;
+      color: rgba(253,248,242,0.75);
+      line-height: 1.65;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      animation: nudge 2.2s ease-in-out infinite;
+    }
+    .scroll-indicator span {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(253,248,242,0.5);
+    }
+    .scroll-indicator .line {
+      width: 1px;
+      height: 44px;
+      background: linear-gradient(to bottom, rgba(196,149,106,0.7), transparent);
+    }
+    @keyframes nudge {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(9px); }
+    }
+
+    /* ─── SECTION LABEL ─── */
+    .eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--warm);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ─── REASONS INTRO ─── */
+    .reasons-intro {
+      padding: 6rem 2rem 3.5rem;
+      text-align: center;
+    }
+    .reasons-intro h2 {
+      font-size: clamp(2.2rem, 5.5vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--dark);
+    }
+    .reasons-intro h2 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .reasons-intro p {
+      margin-top: 1.1rem;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--warm);
+    }
+
+    /* ─── FULL-BLEED REASON SECTIONS ─── */
+    .reason-section {
+      height: 100vh;
+      min-height: 520px;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .reason-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* Placeholder gradients — each reason gets its own warm palette */
+    /* PHOTO: reason-sexy  → replace the gradient with: background-image: url('photos/reason-sexy.jpg'); */
+    .reason-bg.sexy    { background: linear-gradient(145deg, #2C1A14 0%, #7A3D28 40%, #C4956A 80%, #E8D5C4 100%); }
+    /* PHOTO: reason-smart → replace with: background-image: url('photos/reason-smart.jpg'); */
+    .reason-bg.smart   { background: linear-gradient(145deg, #1A2C1F 0%, #3D5C45 45%, #8BA882 80%, #C4D4B0 100%); }
+    /* PHOTO: reason-funny → replace with: background-image: url('photos/reason-funny.jpg'); */
+    .reason-bg.funny   { background: linear-gradient(145deg, #2C1A0A 0%, #7A5228 45%, #C49A5A 80%, #E8D5A4 100%); }
+    /* PHOTO: reason-talented → replace with: background-image: url('photos/reason-talented.jpg'); */
+    .reason-bg.talented { background: linear-gradient(145deg, #0A1A2C 0%, #284052 45%, #5A8098 80%, #A4C4D4 100%); }
+
+    .reason-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.80) 0%,
+        rgba(0,0,0,0.30) 45%,
+        rgba(0,0,0,0.05) 100%
+      );
+    }
+
+    .reason-content {
+      position: relative;
+      z-index: 3;
+      padding: 3rem clamp(1.5rem, 6vw, 6rem);
+      width: 100%;
+    }
+
+    .reason-number {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 0.8rem;
+      opacity: 0.85;
+    }
+
+    .reason-title {
+      font-size: clamp(3.5rem, 9vw, 8rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--cream);
+      line-height: 0.9;
+      letter-spacing: -0.01em;
+    }
+
+    .reason-desc {
+      margin-top: 1.1rem;
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
+      font-style: italic;
+      color: rgba(253,248,242,0.75);
+      max-width: 480px;
+      line-height: 1.75;
+    }
+
+    /* ─── PAYWALL TRIGGER BUTTON ─── */
+    .paywall-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+      background: rgba(253,248,242,0.1);
+      border: 1px solid rgba(232,201,160,0.5);
+      color: var(--gold-light);
+      padding: 0.65rem 1.4rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: background 0.2s, border-color 0.2s;
+      backdrop-filter: blur(4px);
+    }
+    .paywall-trigger:hover {
+      background: rgba(196,149,106,0.2);
+      border-color: var(--gold);
+    }
+    .paywall-trigger .lock-icon { font-size: 0.75rem; }
+
+    /* ─── PAYWALL MODAL ─── */
+    .paywall-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+    .paywall-modal.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .paywall-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(14, 8, 4, 0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      cursor: pointer;
+    }
+    .paywall-modal-box {
+      position: relative;
+      z-index: 2;
+      max-width: 560px;
+      width: 100%;
+      transform: translateY(20px);
+      transition: transform 0.35s ease;
+    }
+    .paywall-modal.open .paywall-modal-box {
+      transform: translateY(0);
+    }
+
+    .paywall-lock { font-size: 2.4rem; margin-bottom: 1rem; }
+
+    .paywall-heading {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--cream);
+      margin-bottom: 0.4rem;
+    }
+
+    .paywall-sub {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      opacity: 0.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .paywall-plans {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .paywall-plan {
+      border: 1px solid rgba(196,149,106,0.35);
+      padding: 1.2rem 1.4rem;
+      border-radius: 3px;
+      min-width: 130px;
+      cursor: pointer;
+      background: rgba(253,248,242,0.04);
+      transition: border-color 0.2s, background 0.2s;
+      text-align: center;
+    }
+    .paywall-plan:hover,
+    .paywall-plan.selected {
+      border-color: var(--gold);
+      background: rgba(196,149,106,0.14);
+    }
+    .paywall-plan.featured { border-color: rgba(196,149,106,0.65); }
+
+    .plan-price {
+      font-size: 1.7rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--cream);
+    }
+    .plan-tier {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-top: 0.3rem;
+    }
+    .plan-perk {
+      font-size: 0.85rem;
+      font-style: italic;
+      color: rgba(253,248,242,0.55);
+      margin-top: 0.45rem;
+    }
+
+    .paywall-cta {
+      background: var(--gold);
+      color: var(--cream);
+      border: none;
+      padding: 0.9rem 2.75rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .paywall-cta:hover {
+      background: var(--rose);
+      transform: translateY(-2px);
+    }
+
+    .paywall-reveal {
+      margin-top: 1.5rem;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      font-style: italic;
+      color: var(--gold-light);
+      opacity: 0;
+      transition: opacity 0.7s ease;
+      min-height: 1.5rem;
+    }
+    .paywall-reveal.show { opacity: 1; }
+
+    /* ─── MEMORIES ─── */
+    .memories {
+      background: var(--blush);
+      padding: 6rem 0 5rem;
+    }
+    .memories-header {
+      text-align: center;
+      padding: 0 2rem 3.5rem;
+    }
+    .memories-header h2 {
+      font-size: clamp(2.2rem, 5.5vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+    }
+    .memories-header h2 em { font-style: italic; color: var(--gold); }
+    .memories-note {
+      margin-top: 1rem;
+      font-style: italic;
+      color: var(--warm);
+      font-size: 1rem;
+    }
+
+    .memories-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 3px;
+    }
+
+    .memory-card {
+      aspect-ratio: 3/4;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    /* PHOTO: memory photos
+       Replace each placeholder div below with:
+         <img src="photos/memory-1.jpg" alt="..." class="memory-img" />
+       The placeholder classes below are just for the no-photo state. */
+
+    .memory-placeholder {
+      width: 100%;
+      height: 100%;
+    }
+    .memory-card:nth-child(1) .memory-placeholder { background: linear-gradient(145deg, #7A4A3A 0%, #C4956A 100%); }
+    .memory-card:nth-child(2) .memory-placeholder { background: linear-gradient(145deg, #3A4A3A 0%, #8B9E6A 100%); }
+    .memory-card:nth-child(3) .memory-placeholder { background: linear-gradient(145deg, #4A3A2A 0%, #C49A5A 100%); }
+    .memory-card:nth-child(4) .memory-placeholder { background: linear-gradient(145deg, #2A3A4A 0%, #6A9AB0 100%); }
+    .memory-card:nth-child(5) .memory-placeholder { background: linear-gradient(145deg, #4A2A3A 0%, #B07A8A 100%); }
+    .memory-card:nth-child(6) .memory-placeholder { background: linear-gradient(145deg, #1C2C1C 0%, #5A7A5A 100%); }
+
+    .memory-img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.55s ease;
+    }
+    .memory-card:hover .memory-img { transform: scale(1.04); }
+
+    .memory-placeholder-icon {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      opacity: 0.2;
+    }
+
+    .memory-caption {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+    }
+    .memory-card:hover .memory-caption { opacity: 1; }
+
+    .memory-text-inner { color: var(--cream); }
+    .memory-when {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 0.35rem;
+    }
+    .memory-name {
+      font-size: 1.35rem;
+      font-weight: 300;
+      font-style: italic;
+    }
+    .memory-blurb {
+      font-size: 0.85rem;
+      font-style: italic;
+      color: rgba(253,248,242,0.7);
+      margin-top: 0.35rem;
+      line-height: 1.5;
+    }
+
+    /* ─── GIFTS ─── */
+    .gifts-section {
+      padding: 7rem 2rem;
+      background: var(--cream);
+    }
+    .gifts-inner {
+      max-width: 740px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .gifts-inner h2 {
+      font-size: clamp(2.2rem, 5.5vw, 4.5rem);
+      font-weight: 300;
+      font-style: italic;
+      margin-bottom: 0.75rem;
+    }
+    .gifts-intro-text {
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--warm);
+      line-height: 1.75;
+      margin-bottom: 4rem;
+    }
+
+    .gift-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      text-align: left;
+    }
+
+    .gift-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      padding: 1.75rem 2rem;
+      border: 1px solid var(--blush);
+      border-radius: 4px;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .gift-card:hover {
+      border-color: var(--gold);
+      box-shadow: 0 6px 36px rgba(196,149,106,0.1);
+    }
+
+    .gift-icon-wrap {
+      font-size: 2rem;
+      flex-shrink: 0;
+      line-height: 1;
+      padding-top: 0.15rem;
+    }
+
+    .gift-body h3 {
+      font-size: 1.6rem;
+      font-weight: 400;
+      font-style: italic;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+    .gift-body p {
+      font-size: 0.97rem;
+      font-style: italic;
+      color: var(--warm);
+      line-height: 1.8;
+    }
+    .gift-badge {
+      display: inline-block;
+      margin-top: 0.85rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.56rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(196,149,106,0.5);
+      padding: 0.2rem 0.7rem;
+      border-radius: 100px;
+    }
+
+    /* ─── CLOSING ─── */
+    .closing {
+      padding: 8rem 2rem 7rem;
+      background: linear-gradient(155deg, #1C1410 0%, #2C1F17 35%, #4A2D1A 70%, #6B3E26 100%);
+      text-align: center;
+      color: var(--cream);
+    }
+    .closing-inner {
+      max-width: 580px;
+      margin: 0 auto;
+    }
+    .closing-eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      opacity: 0.8;
+      margin-bottom: 2rem;
+    }
+    .closing h2 {
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      margin-bottom: 2.25rem;
+    }
+    .closing h2 em { font-style: italic; color: var(--gold-light); }
+
+    .love-letter {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      font-style: italic;
+      line-height: 1.95;
+      color: rgba(253,248,242,0.82);
+      margin-bottom: 3rem;
+    }
+    .love-letter p + p { margin-top: 1.25rem; }
+
+    .signature {
+      font-size: 2rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--gold-light);
+    }
+    .signature-heart {
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      opacity: 0.55;
+    }
+
+    /* ─── FADE-UP ANIMATIONS ─── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.85s ease, transform 0.85s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-up.delay-1 { transition-delay: 0.1s; }
+    .fade-up.delay-2 { transition-delay: 0.2s; }
+    .fade-up.delay-3 { transition-delay: 0.3s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .memories-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .reason-section { min-height: 85vh; height: auto; }
+      .memories-grid { grid-template-columns: repeat(2, 1fr); gap: 2px; padding: 0; }
+      .memory-card { aspect-ratio: 1/1; }
+      .memory-caption { opacity: 1; }
+      .paywall-plans { flex-direction: column; align-items: center; }
+      .paywall-plan { width: 100%; max-width: 230px; }
+      .gift-card { flex-direction: column; gap: 1rem; padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━ NAV ━━━━━━━━━━━━━━━━━━━━ -->
+  <nav id="nav">
+    <div class="nav-logo">For Bby &nbsp;🤍</div>
+    <ul class="nav-links">
+      <li><a href="#reasons">Why I Love You</a></li>
+      <li><a href="#memories">Our Memories</a></li>
+      <li><a href="#gifts">For You</a></li>
+    </ul>
+  </nav>
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━ HERO ━━━━━━━━━━━━━━━━━━━━ -->
+  <!-- PHOTO: Replace the CSS gradient on .hero with your image:
+       In the <style> block above, change .hero background to:
+         background-image: url('photos/hero.jpg');
+         background-size: cover;
+         background-position: center top;
+       Then uncomment .hero-img-overlay below. -->
+  <header class="hero">
+    <!-- <div class="hero-img-overlay"></div> -->
+    <div class="hero-content">
+      <div class="hero-eyebrow">May 18, 2026 &nbsp;·&nbsp; A day worth celebrating</div>
+      <h1 class="hero-title">
+        Happy Birthday,
+        <em>Bby.</em>
+      </h1>
+      <p class="hero-sub">
+        Every year with you is better than the last.<br>
+        This one's all yours.
+      </p>
+    </div>
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <div class="line"></div>
+    </div>
+  </header>
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━ REASONS INTRO ━━━━━━━━━━━━━━━━━━━━ -->
+  <div class="reasons-intro fade-up" id="reasons">
+    <div class="eyebrow">A few of many reasons</div>
+    <h2>Why I love you —<br><em>let me count the ways.</em></h2>
+    <p>In no particular order. The list is longer than this page can hold.</p>
+  </div>
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━ REASON 1: SEXY ━━━━━━━━━━━━━━━━━━━━ -->
+  <!-- PHOTO: <div class="reason-bg sexy" style="background-image: url('photos/reason-sexy.jpg');"></div> -->
+  <section class="reason-section">
+    <div class="reason-bg sexy"></div>
+    <div class="reason-overlay"></div>
+    <div class="reason-content">
+      <div class="reason-number">01 &nbsp;·&nbsp; Why I Love You</div>
+      <h2 class="reason-title">Sexy.</h2>
+      <p class="reason-desc">Some things speak for themselves. But if you need more evidence —</p>
+      <button class="paywall-trigger" onclick="openPaywall()">
+        <span class="lock-icon">🔒</span> Click here for more sexy content
+      </button>
+    </div>
+  </section>
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━ PAYWALL MODAL ━━━━━━━━━━━━━━━━━━━━ -->
+  <div class="paywall-modal" id="paywall">
+    <div class="paywall-modal-backdrop" onclick="closePaywall()"></div>
+    <div class="paywall-modal-box">
+      <div class="paywall-lock">🔒</div>
+      <h2 class="paywall-heading">Subscribers Only</h2>
+      <p class="paywall-sub">Exclusive content &nbsp;·&nbsp; Select your plan to continue</p>
+
+      <div class="paywall-plans">
+        <div class="paywall-plan" onclick="selectPlan(this)">
+          <div class="plan-price">$4.99</div>
+          <div class="plan-tier">Basic</div>
+          <div class="plan-perk">Side profile only</div>
+        </div>
+        <div class="paywall-plan featured" onclick="selectPlan(this)">
+          <div class="plan-price">$19.99</div>
+          <div class="plan-tier">Premium ✦</div>
+          <div class="plan-perk">Full access</div>
+        </div>
+        <div class="paywall-plan" onclick="selectPlan(this)">
+          <div class="plan-price">$49.99</div>
+          <div class="plan-tier">VIP</div>
+          <div class="plan-perk">You already have this</div>
+        </div>
+      </div>
+
+      <button class="paywall-cta" onclick="unlockPaywall()">Subscribe Now</button>
+      <p class="paywall-reveal" id="paywall-msg">
+        jk — you've always had VIP access. forever. 🤍
+      </p>
+    </div>
+  </div>
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━ REASON 2: SMART ━━━━━━━━━━━━━━━━━━━━ -->
+  <!-- PHOTO: <div class="reason-bg smart" style="background-image: url('photos/reason-smart.jpg');"></div> -->
+  <section class="reason-section">
+    <div class="reason-bg smart"></div>
+    <div class="reason-overlay"></div>
+    <div class="reason-content fade-up">
+      <div class="reason-number">02 &nbsp;·&nbsp; Why I Love You</div>
+      <h2 class="reason-title">Smart.</h2>
+      <p class="reason-desc">The way your mind works — how you see things, solve things, remember everything — genuinely makes me sharper just by being around you. I learn something from you all the time.</p>
+    </div>
+  </section>
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━ REASON 3: FUNNY ━━━━━━━━━━━━━━━━━━━━ -->
+  <!-- PHOTO: <div class="reason-bg funny" style="background-image: url('photos/reason-funny.jpg');"></div> -->
+  <section class="reason-section">
+    <div class="reason-bg funny"></div>
+    <div class="reason-overlay"></div>
+    <div class="reason-content fade-up">
+      <div class="reason-number">03 &nbsp;·&nbsp; Why I Love You</div>
+      <h2 class="reason-title">Hilarious.</h2>
+      <p class="reason-desc">The timing. The deadpan. The callbacks you pull out of nowhere. I've never laughed this consistently with anyone. You make everything more fun without even trying.</p>
+    </div>
+  </section>
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━ REASON 4: TALENTED ━━━━━━━━━━━━━━━━━━━━ -->
+  <!-- PHOTO: <div class="reason-bg talented" style="background-image: url('photos/reason-talented.jpg');"></div> -->
+  <section class="reason-section">
+    <div class="reason-bg talented"></div>
+    <div class="reason-overlay"></div>
+    <div class="reason-content fade-up">
+      <div class="reason-number">04 &nbsp;·&nbsp; Why I Love You</div>
+      <h2 class="reason-title">Talented.</h2>
+      <p class="reason-desc">Whatever you put your hands to, you do well. It's not something you think about — it's just who you are. I notice it every time.</p>
+    </div>
+  </section>
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━ MEMORIES ━━━━━━━━━━━━━━━━━━━━ -->
+  <section class="memories" id="memories">
+    <div class="memories-header fade-up">
+      <div class="eyebrow">The moments that made us</div>
+      <h2>Our story,<br><em>in pictures.</em></h2>
+      <p class="memories-note">Hover to remember. More to be added soon.</p>
+    </div>
+
+    <div class="memories-grid">
+
+      <!-- ─ MEMORY CARD 1 ─
+           To add a real photo: remove the .memory-placeholder div,
+           add <img src="photos/memory-1.jpg" alt="..." class="memory-img" />
+           Update the date, title, and blurb below. -->
+      <div class="memory-card fade-up">
+        <div class="memory-placeholder">
+          <div class="memory-placeholder-icon">📸</div>
+        </div>
+        <div class="memory-caption">
+          <div class="memory-text-inner">
+            <div class="memory-when">A Memory</div>
+            <div class="memory-name">Your photo here</div>
+            <div class="memory-blurb">Add a date and a caption for this moment.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─ MEMORY CARD 2 ─ -->
+      <div class="memory-card fade-up delay-1">
+        <div class="memory-placeholder">
+          <div class="memory-placeholder-icon">📸</div>
+        </div>
+        <div class="memory-caption">
+          <div class="memory-text-inner">
+            <div class="memory-when">A Memory</div>
+            <div class="memory-name">Your photo here</div>
+            <div class="memory-blurb">Add a date and a caption for this moment.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─ MEMORY CARD 3 ─ -->
+      <div class="memory-card fade-up delay-2">
+        <div class="memory-placeholder">
+          <div class="memory-placeholder-icon">📸</div>
+        </div>
+        <div class="memory-caption">
+          <div class="memory-text-inner">
+            <div class="memory-when">A Memory</div>
+            <div class="memory-name">Your photo here</div>
+            <div class="memory-blurb">Add a date and a caption for this moment.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─ MEMORY CARD 4 ─ -->
+      <div class="memory-card fade-up">
+        <div class="memory-placeholder">
+          <div class="memory-placeholder-icon">📸</div>
+        </div>
+        <div class="memory-caption">
+          <div class="memory-text-inner">
+            <div class="memory-when">A Memory</div>
+            <div class="memory-name">Your photo here</div>
+            <div class="memory-blurb">Add a date and a caption for this moment.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─ MEMORY CARD 5 ─ -->
+      <div class="memory-card fade-up delay-1">
+        <div class="memory-placeholder">
+          <div class="memory-placeholder-icon">📸</div>
+        </div>
+        <div class="memory-caption">
+          <div class="memory-text-inner">
+            <div class="memory-when">A Memory</div>
+            <div class="memory-name">Your photo here</div>
+            <div class="memory-blurb">Add a date and a caption for this moment.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─ MEMORY CARD 6 ─ -->
+      <div class="memory-card fade-up delay-2">
+        <div class="memory-placeholder">
+          <div class="memory-placeholder-icon">📸</div>
+        </div>
+        <div class="memory-caption">
+          <div class="memory-text-inner">
+            <div class="memory-when">A Memory</div>
+            <div class="memory-name">Your photo here</div>
+            <div class="memory-blurb">Add a date and a caption for this moment.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━ GIFTS ━━━━━━━━━━━━━━━━━━━━ -->
+  <section class="gifts-section" id="gifts">
+    <div class="gifts-inner fade-up">
+      <div class="eyebrow">Carefully chosen, made with love</div>
+      <h2>For you.</h2>
+      <p class="gifts-intro-text">
+        You deserve good things — more than any wrapping paper could hold.<br>
+        A few somethings to mark the day.
+      </p>
+
+      <div class="gift-list">
+
+        <!-- GIFT 1: Cash -->
+        <div class="gift-card fade-up">
+          <div class="gift-icon-wrap">💛</div>
+          <div class="gift-body">
+            <h3>A little something extra</h3>
+            <p>Since we're away from home, this one arrives digitally — but it comes with a whole lot of love attached. No instructions, no receipts. Treat yourself to whatever you want, or save it for something you've been thinking about. Entirely yours.</p>
+            <span class="gift-badge">Transferred digitally</span>
+          </div>
+        </div>
+
+        <!-- GIFT 2: Pilates -->
+        <div class="gift-card fade-up delay-1">
+          <div class="gift-icon-wrap">🩰</div>
+          <div class="gift-body">
+            <h3>Pilates Package</h3>
+            <p>Because you love it, you're incredible at it, and you deserve a full class package with nothing to count and nothing to ration. Just show up, feel amazing — as you always do — and let me handle the rest.</p>
+            <span class="gift-badge">Class package</span>
+          </div>
+        </div>
+
+        <!-- GIFT 3: Trip -->
+        <div class="gift-card fade-up delay-2">
+          <div class="gift-icon-wrap">✈️</div>
+          <div class="gift-body">
+            <h3>One Trip, Your Pick</h3>
+            <p>Choose the destination. I'll plan everything else — flights, hotel, every detail. A weekend, a few days, somewhere we've talked about or somewhere brand new. This is a real commitment, no expiration date, redeemable whenever you're ready to go.</p>
+            <span class="gift-badge">Redeemable whenever</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━ CLOSING ━━━━━━━━━━━━━━━━━━━━ -->
+  <section class="closing">
+    <div class="closing-inner fade-up">
+      <div class="closing-eyebrow">From me, to you — always</div>
+      <h2>Happy Birthday,<br><em>my love.</em></h2>
+      <div class="love-letter">
+        <p>I'm not sure I have the right words — but I know that every single day with you is something I'm genuinely grateful for. You make ordinary moments feel like something worth holding onto. You make me laugh harder than anyone I've ever met.</p>
+        <p>You push me. You inspire me. You somehow still choose to share your life with me — and I don't take that lightly, not even for a second.</p>
+        <p>I love you more than any page could hold. Today is entirely yours. Happy birthday, Bby. 🤍</p>
+      </div>
+      <div class="signature">— always yours</div>
+      <div class="signature-heart">🤍</div>
+    </div>
+  </section>
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━ SCRIPTS ━━━━━━━━━━━━━━━━━━━━ -->
+  <script>
+    // ─── Nav: add .scrolled class after scrolling past hero ───
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // ─── Fade-up on scroll ───
+    const faders = document.querySelectorAll('.fade-up');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    faders.forEach(el => revealObserver.observe(el));
+
+    // ─── Paywall modal ───
+    const paywallModal = document.getElementById('paywall');
+
+    function openPaywall() {
+      paywallModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePaywall() {
+      paywallModal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closePaywall();
+    });
+
+    function selectPlan(el) {
+      document.querySelectorAll('.paywall-plan').forEach(p => p.classList.remove('selected'));
+      el.classList.add('selected');
+    }
+
+    function unlockPaywall() {
+      const msg = document.getElementById('paywall-msg');
+      msg.classList.add('show');
+      // After the sweet message shows, close the modal
+      setTimeout(() => {
+        paywallModal.classList.remove('open');
+        document.body.style.overflow = '';
+        // Reset for next time
+        setTimeout(() => { msg.classList.remove('show'); }, 600);
+      }, 2800);
+    }
+  </script>
+
+</body>
+</html>
